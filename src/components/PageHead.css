@@ -1,0 +1,26 @@
+.pagehead-title {
+  font-weight: 500 !important;
+}
+.pagehead-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  padding: 4px 8px 4px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.pagehead-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+.pagehead-back:hover {
+  color: var(--fg);
+}
+
+.pagehead-back:hover {
+  color: var(--accent);
+}

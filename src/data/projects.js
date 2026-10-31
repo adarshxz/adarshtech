@@ -1,0 +1,126 @@
+export const projects = [
+  {
+    id: 'scoutai',
+    title: 'ScoutAI',
+    shortTag: 'AI / Career',
+    year: '2026',
+    stack: ['React', 'Vite', 'FastAPI', 'Python', 'Supabase', 'Groq'],
+    summary:
+      'AI-powered career intelligence and resume analysis platform. It parses resumes, analyzes GitHub portfolios, matches jobs, and offers interactive AI career coaching, powered by Groq.',
+    highlights: [
+      'Resume parsing and analysis',
+      'GitHub portfolio analysis',
+      'Job matching',
+      'Interactive AI career coaching with Groq',
+      'FastAPI backend with a React + Vite dashboard',
+    ],
+    preview: '/images/projects/scoutai.jpg',
+    github: 'https://github.com/adarshxz/ScoutAI',
+    live: 'https://scoutai-frontend-z0jb.onrender.com/',
+  },
+  {
+    id: 'healthbuddy',
+    title: 'HealthBuddy',
+    shortTag: 'AI / Healthcare',
+    year: '2026',
+    stack: ['JavaScript', 'Node.js', 'Express', 'MongoDB', 'JWT', 'FastAPI', 'LangChain'],
+    summary:
+      'AI-powered healthcare assistant with multilingual symptom triage, a facility locator, a family caregiver dashboard for dependents’ medicines and health, adherence tracking, and emergency alerts.',
+    highlights: [
+      'Multilingual symptom triage in 30+ languages',
+      'Facility locator on an OpenStreetMap map',
+      'Caregiver dashboard for dependents’ medicines',
+      'Real-time adherence tracking and AI-driven insights',
+      'Emergency red-flag detection and alerts',
+    ],
+    github: 'https://github.com/adarshxz/healthbuddY',
+    live: '#',
+  },
+  {
+    id: 'docai-invoice-extractor',
+    title: 'DocAI Invoice Extractor',
+    shortTag: 'AI / Document AI',
+    year: '2026',
+    stack: ['Python', 'FastAPI', 'Gemini API', 'Pandas', 'Streamlit'],
+    summary:
+      'AI-powered document intelligence system that extracts structured financial data, line items, and vendor metadata from invoices and receipts using multimodal LLMs.',
+    highlights: [
+      'Automated invoice & receipt parsing from PDF documents and images',
+      'Zero-shot extraction of vendor, invoice ID, dates, line items, and totals',
+      'FastAPI service pipeline with structured Pydantic schema validation',
+      'Interactive Streamlit dashboard for real-time document analysis and CSV export',
+    ],
+    github: 'https://github.com/adarshxz/docai-invoice-extractor',
+    live: '#',
+  },
+  {
+    id: 'eta-simulation',
+    title: 'ETA Simulation',
+    shortTag: 'Simulation / Web',
+    year: '2026',
+    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
+    summary:
+      'Real-time transit and delivery simulation engine calculating dynamic Estimated Time of Arrival (ETA) with live route tracking, traffic variables, and telemetry visualizations.',
+    highlights: [
+      'Interactive routing simulation with dynamic waypoint calculations',
+      'Real-time ETA adjustments based on variable speed and traffic conditions',
+      'Telemetry HUD displaying remaining distance, time, and travel velocity',
+      'High-performance, responsive web application deployed live on Vercel',
+    ],
+    github: 'https://github.com/adarshxz/ETA_simulation',
+    live: 'https://eta-simulation.vercel.app/',
+  },
+  {
+    id: 'kisanshield-ai',
+    title: 'KisanShield AI',
+    shortTag: 'AI / AgriTech',
+    year: '2026',
+    stack: ['Python', 'PyTorch', 'FastAPI', 'React', 'Tailwind CSS'],
+    summary:
+      'AI-powered agricultural diagnostic and advisory platform for farmers. Detects crop diseases from leaf imagery using computer vision, recommends soil treatments, and provides predictive agronomic insights.',
+    highlights: [
+      'Computer vision pipeline for multi-class crop disease detection and classification',
+      'Actionable treatment, pesticide, and fertilizer recommendations with dosage guidelines',
+      'FastAPI inference backend serving optimized deep learning models',
+      'Farmer-first intuitive dashboard with multilingual support and weather risk alerts',
+    ],
+    github: 'https://github.com/adarshxz/kisanshield-ai',
+    live: '#',
+  },
+  {
+    id: 'attendx',
+    title: 'AttendX',
+    shortTag: 'Full-Stack / Management',
+    year: '2026',
+    stack: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'Tailwind CSS'],
+    summary:
+      'Smart attendance tracking and analytics management system. Features automated verification, role-based dashboards, leave workflows, and real-time absence tracking analytics.',
+    highlights: [
+      'Automated attendance logging with QR/session verification and geolocation check-in',
+      'Role-based portals for students, employees, and administrators',
+      'Real-time attendance analytics, monthly reports, and compliance threshold alerts',
+      'Secure authentication with JWT and RESTful Express/MongoDB architecture',
+    ],
+    github: 'https://github.com/adarshxz/AttendX',
+    live: '#',
+  },
+  {
+    id: 'rapidpapers',
+    title: 'RapidPapers',
+    shortTag: 'Education / Web',
+    year: '2026',
+    stack: ['HTML5', 'CSS3', 'Bootstrap', 'jQuery', 'JavaScript'],
+    summary:
+      'A fast, dark-themed web platform where students find previous-year mid-term and final-term question papers by subject, all in one place. Live in beta and open to paper contributions.',
+    highlights: [
+      'Mid-term and final-term papers in a single repository',
+      'Subjects across engineering and science, from Mathematics and Physics to Fundamentals of AI & ML',
+      'Responsive, dark interface with a contact page for contributors',
+      'Static site, deployed on Vercel',
+    ],
+    preview: '/images/projects/rapidpapers.jpg',
+    github: 'https://github.com/adarshxz/RapidPapers',
+    live: 'https://rapid-papers.vercel.app/',
+  },
+]
+

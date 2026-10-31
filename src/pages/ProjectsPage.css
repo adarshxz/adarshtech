@@ -1,0 +1,40 @@
+.psearch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: min(100%, 260px);
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--input);
+  border-radius: 10px;
+  color: var(--muted-fg);
+}
+.psearch:focus-within {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 40%, transparent);
+}
+.psearch input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.9rem;
+}
+.psearch input:focus {
+  outline: none;
+}
+.psearch input::placeholder {
+  color: var(--muted-fg);
+}
+.pgrid-page > .pcard {
+  border-bottom: 1px solid var(--border);
+}
+.pgrid-page > .pcard:last-child {
+  border-bottom: 0;
+}
+.pempty {
+  padding: 40px 16px;
+  text-align: center;
+}

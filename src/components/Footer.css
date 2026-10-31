@@ -1,0 +1,18 @@
+.footer {
+  border-top: 1px solid var(--border);
+}
+.footer-text {
+  padding: 28px 16px 24px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+.footer-name {
+  color: var(--fg);
+  font-weight: 500;
+}
+.footer-dots {
+  height: 112px;
+  border-top: 1px solid var(--border);
+  -webkit-mask-image: linear-gradient(180deg, #000, transparent);
+  mask-image: linear-gradient(180deg, #000, transparent);
+}

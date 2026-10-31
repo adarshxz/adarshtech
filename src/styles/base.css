@@ -1,0 +1,372 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   Tokens: neutral light and dark themes (dark is the default).
+   One bordered column of hairline-separated sections.
+   ============================================================ */
+:root {
+  --page: #eef0f3;
+  --bg: #f8f9fa;
+  --fg: #131419;
+  --card: #ffffff;
+  --muted: #f1f3f5;
+  --muted-fg: #495057;
+  --border: #e2e5e9;
+  --input: #ced4da;
+  --btn: #18181b;
+  --btn-fg: #ffffff;
+  --dot: rgba(24, 24, 27, 0.12);
+  --ring: rgba(36, 63, 224, 0.5);
+  --kbd: #f1f3f5;
+
+  /* notebook palette: graphite ink, one ballpoint blue, one highlighter */
+  --accent: #243fe0;
+  --accent-fg: #ffffff;
+  --accent-2: #243fe0;
+  --mark: #ffe34d;
+  --mark-solid: #c9a100;
+  --c-blue: #1d4ed8;
+  --c1: #243fe0;
+  --c2: #0b7a75;
+  --c3: #c2255c;
+  --c4: #b7791f;
+  --c5: #2f855a;
+
+  --font-sans: 'Satoshi', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-pixel: 'Pixelify Sans', 'Courier New', monospace;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --col: 716px;
+
+  /* names used by the generated project covers */
+  --ink: var(--bg);
+  --ink-2: var(--card);
+  --ink-3: var(--muted);
+  --bone: var(--fg);
+  --ion: var(--accent);
+  --ion-dim: color-mix(in srgb, var(--accent) 14%, transparent);
+  --mono: var(--font-mono);
+  --line: var(--border);
+  --line-2: var(--input);
+  color-scheme: light;
+}
+.dark {
+  --page: #000000;
+  --bg: #000000;
+  --fg: #ffffff;
+  --card: #0c0c0e;
+  --muted: #19191d;
+  --muted-fg: #a39fa6;
+  --border: rgba(255, 255, 255, 0.14);
+  --input: rgba(255, 255, 255, 0.26);
+  --btn: #ffffff;
+  --btn-fg: #25242a;
+  --dot: rgba(255, 255, 255, 0.22);
+  --ring: rgba(123, 140, 255, 0.6);
+  --kbd: #24252c;
+
+  --accent: #8294ff;
+  --accent-fg: #11121a;
+  --accent-2: #8294ff;
+  --mark: rgba(255, 217, 61, 0.34);
+  --mark-solid: #ffd93d;
+  --c-blue: #5aa2ff;
+  --c1: #8294ff;
+  --c2: #4fd1c5;
+  --c3: #f783ac;
+  --c4: #f6c453;
+  --c5: #68d391;
+  color-scheme: dark;
+}
+
+/* ---- base ---------------------------------------------------- */
+html {
+  background: var(--page);
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body.is-locked {
+  overflow: hidden;
+}
+::selection {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip {
+  position: fixed;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: top 0.2s;
+}
+.skip:focus {
+  top: 0.75rem;
+}
+
+/* ---- the column ---------------------------------------------- */
+.site {
+  max-width: var(--col);
+  min-height: 100svh;
+  margin: 0 auto;
+  padding-top: 8px;
+  border-inline: 1px solid var(--border);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+.site-main {
+  flex: 1;
+}
+
+.dots {
+  background: radial-gradient(var(--dot) 1px, transparent 1.2px) 0 0 / 8px 8px;
+}
+
+/* A section band: hairline above, hairline under the title row. */
+.section {
+  border-top: 1px solid var(--border);
+}
+.band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 4px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.band h2,
+.band .band-title {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+@media (min-width: 640px) {
+  .band h2,
+  .band .band-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* ---- buttons ------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  overflow: hidden;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: var(--btn);
+  color: var(--btn-fg);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0 var(--accent);
+}
+.btn svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+.btn-lg {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  gap: 8px;
+}
+.btn-outline {
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--input);
+}
+.btn-outline:hover {
+  background: transparent;
+  border-color: var(--fg);
+}
+.btn[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.chip img,
+.chip svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+.chip-lg {
+  padding: 3.5px 8px;
+  font-size: 0.75rem;
+}
+.chip-lg img,
+.chip-lg svg {
+  width: 14px;
+  height: 14px;
+}
+
+.u {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--fg) 45%, transparent);
+  transition: text-decoration-color 0.2s ease;
+}
+.u:hover {
+  text-decoration-color: var(--accent);
+}
+/* the marker pen */
+.hl {
+  background: linear-gradient(transparent 52%, var(--mark) 52%, var(--mark) 90%, transparent 90%);
+  padding: 0 2px;
+  margin: 0 -2px;
+  color: var(--fg);
+  font-weight: 500;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.muted {
+  color: var(--muted-fg);
+}
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* ---- reveal -------------------------------------------------- */
+.fade {
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.fade.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 716px) {
+  .site {
+    border-inline: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .fade {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- theme change animation ----------------------------------- */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+.theme-fade,
+.theme-fade *,
+.theme-fade *::before,
+.theme-fade *::after {
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    border-color 0.4s ease,
+    fill 0.4s ease !important;
+}

@@ -1,0 +1,175 @@
+.open-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 12px;
+  border: 1px solid color-mix(in srgb, var(--c5) 55%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c5) 12%, transparent);
+  color: var(--c5);
+  font-size: 0.875rem;
+}
+
+.routes {
+  display: grid;
+  gap: 8px;
+}
+@media (min-width: 640px) {
+  .routes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.route {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+.route:hover {
+  background: var(--muted);
+}
+.route-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--muted);
+}
+.route-text {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  line-height: 1.3;
+}
+.route-text strong {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.route-text span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted-fg);
+  font-size: 0.8rem;
+}
+.route.is-primary {
+  background: var(--btn);
+  color: var(--btn-fg);
+  border-color: var(--btn);
+}
+.route.is-primary:hover {
+  background: var(--btn);
+  box-shadow: 2px 2px 0 var(--accent);
+}
+.route.is-primary .route-icon {
+  background: color-mix(in srgb, var(--btn-fg) 18%, transparent);
+}
+.route.is-primary .route-text span {
+  color: color-mix(in srgb, var(--btn-fg) 65%, transparent);
+}
+
+/* ---- form ---------------------------------------------------- */
+.cform {
+  display: grid;
+  gap: 16px;
+}
+.cform-intro {
+  max-width: 34rem;
+  font-size: 0.9rem;
+}
+.cfield {
+  display: grid;
+  gap: 6px;
+}
+.cfield label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.cfield input,
+.cfield textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--input);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.9rem;
+  resize: vertical;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.cfield input::placeholder,
+.cfield textarea::placeholder {
+  color: var(--muted-fg);
+}
+.cfield input:focus,
+.cfield textarea:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 40%, transparent);
+}
+.cfield [aria-invalid='true'] {
+  border-color: #e5484d;
+}
+.chint,
+.cerr {
+  font-size: 0.75rem;
+}
+.cerr {
+  color: #e5484d;
+}
+.cbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 44px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--btn);
+  color: var(--btn-fg);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.cbtn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--accent);
+}
+.cbtn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.cstatus {
+  font-size: 0.875rem;
+  color: var(--muted-fg);
+}
+.cstatus:empty {
+  display: none;
+}
+.cstatus.sent {
+  color: #30a46c;
+}
+.cstatus.error {
+  color: #e5484d;
+}
+.cnote {
+  text-align: right;
+  font-size: 0.8rem;
+}
+
+.open-pill::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--c5);
+}

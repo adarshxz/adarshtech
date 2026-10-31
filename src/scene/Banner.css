@@ -1,0 +1,46 @@
+.banner {
+  position: relative;
+  height: clamp(110px, 16vw, 128px);
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.banner-dots {
+  position: absolute;
+  inset: 0;
+}
+.banner-canvas {
+  position: absolute;
+  inset: 0;
+  animation: banner-in 1.2s ease 0.2s both;
+}
+@keyframes banner-in {
+  from {
+    opacity: 0;
+  }
+}
+.banner-note {
+  position: absolute;
+  left: 16px;
+  bottom: 0.6rem;
+  margin: 0;
+  max-width: 19rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: var(--muted-fg);
+}
+.banner-note-touch {
+  display: none;
+}
+@media (hover: none) {
+  .banner-note-fine {
+    display: none;
+  }
+  .banner-note-touch {
+    display: inline;
+  }
+}
+
+.banner-note span {
+  opacity: 0.8;
+}
