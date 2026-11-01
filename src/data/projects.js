@@ -16,7 +16,6 @@ export const projects = [
     ],
     preview: '/images/projects/scoutai.jpg',
     github: 'https://github.com/adarshxz/ScoutAI',
-    live: 'https://scoutai-frontend-z0jb.onrender.com/',
   },
   {
     id: 'healthbuddy',
