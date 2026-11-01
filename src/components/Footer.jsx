@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react'
 import { site } from '../data/site'
 import './Footer.css'
 
-const VISITOR_COUNT_KEY = 'portfolio-visitor-count'
-const VISITOR_SESSION_KEY = 'portfolio-visitor-count-recorded'
+const VISITOR_ID_KEY = 'portfolio-visitor-id'
 const INITIAL_VISITOR_COUNT = 100
 
 const ordinal = (n) => {
@@ -16,19 +15,42 @@ export default function Footer() {
   const [visitorCount, setVisitorCount] = useState(INITIAL_VISITOR_COUNT)
 
   useEffect(() => {
-    try {
-      const saved = Number.parseInt(localStorage.getItem(VISITOR_COUNT_KEY), 10)
-      const current = Number.isFinite(saved) && saved >= INITIAL_VISITOR_COUNT ? saved : INITIAL_VISITOR_COUNT
-      const countedThisSession = sessionStorage.getItem(VISITOR_SESSION_KEY) === 'true'
-      const next = countedThisSession ? current : (saved ? current + 1 : current)
+    const visitorId = (() => {
+      try {
+        const existing = localStorage.getItem(VISITOR_ID_KEY)
+        if (existing) return existing
+        const created = crypto.randomUUID()
+        localStorage.setItem(VISITOR_ID_KEY, created)
+        return created
+      } catch {
+        return crypto.randomUUID()
+      }
+    })()
 
-      if (!countedThisSession) sessionStorage.setItem(VISITOR_SESSION_KEY, 'true')
-      localStorage.setItem(VISITOR_COUNT_KEY, String(next))
-      setVisitorCount(next)
-    } catch {
-      // Storage can be unavailable in privacy-focused browser settings.
+    const updateCount = async (method = 'GET') => {
+      try {
+        const response = await fetch('/api/visitor-count', {
+          method,
+          headers: method === 'POST' ? { 'Content-Type': 'application/json' } : undefined,
+          body: method === 'POST' ? JSON.stringify({ visitorId }) : undefined,
+        })
+        if (!response.ok) return
+        const { count } = await response.json()
+        if (Number.isFinite(count) && count >= INITIAL_VISITOR_COUNT) setVisitorCount(count)
+      } catch {
+        // Keep the baseline count visible while the counter service is unavailable.
+      }
     }
+
+    updateCount('POST')
+    const interval = window.setInterval(() => updateCount(), 5_000)
+    return () => window.clearInterval(interval)
   }, [])
+
+  /*
+    A random ID is stored per browser only to avoid counting refreshes as new
+    visitors. The count itself is shared through the server-side Redis API.
+  */
 
   return (
     <footer className="footer">
