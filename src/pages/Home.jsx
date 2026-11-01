@@ -13,7 +13,6 @@ import {
   ProjectsPreview,
   Skills,
   Achievements,
-  ClosingCta,
 } from '../components/Sections'
 
 export default function Home() {
@@ -46,7 +45,6 @@ export default function Home() {
       <ProjectsPreview />
       <Skills />
       <Achievements />
-      <ClosingCta />
     </>
   )
 }
