@@ -13,7 +13,7 @@ export const site = {
 
 export const resume = {
   label: 'Resume',
-  href: 'https://drive.google.com/file/d/1wOlC_0963_2VPhL19uhP6hDcJ06w25i5/view?usp=sharing',
+  href: 'https://drive.google.com/file/d/1WX5YAMrKNRxKYLFk72C45hqbB-XdGZnM/view?usp=sharing',
 }
 
 export const socials = [

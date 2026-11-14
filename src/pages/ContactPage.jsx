@@ -6,12 +6,37 @@ import { socialIcon, Mail, Send, ArrowUpRight } from '../components/Icons'
 import './ContactPage.css'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+const clip = (s, n) => (s.length > n ? `${s.slice(0, n - 1)}…` : s)
+const webhook = import.meta.env.VITE_DISCORD_WEBHOOK_URL
+const hasWebhook = Boolean(webhook && webhook.startsWith('https://discord.com/api/webhooks/'))
+
 /*
-  This is a static client app, so it never embeds a delivery webhook or other
-  secret in the browser bundle. The visitor sends the prefilled message from
-  their own email client instead.
+  Delivery: if VITE_DISCORD_WEBHOOK_URL is configured the message is posted there.
+  Otherwise the form hands off to the visitor's email app with the message prefilled
+  and says so. It never reports "sent" when nothing was sent.
 */
-function deliver({ email, message }) {
+async function deliver({ email, message }) {
+  if (hasWebhook) {
+    const res = await fetch(webhook, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        embeds: [
+          {
+            title: clip(`New message from ${email}`, 250),
+            color: 0xfafafa,
+            fields: [
+              { name: 'Email', value: clip(email, 200), inline: true },
+              { name: 'Message', value: clip(message, 1000) },
+            ],
+            timestamp: new Date().toISOString(),
+          },
+        ],
+      }),
+    })
+    if (!res.ok) throw new Error(`Webhook responded ${res.status}`)
+    return 'sent'
+  }
   const body = `${message}\n\nReply to: ${email}`
   window.location.href = `mailto:${site.email}?subject=${encodeURIComponent('Message from your portfolio')}&body=${encodeURIComponent(body)}`
   return 'handoff'
@@ -43,7 +68,7 @@ export default function ContactPage() {
     if (!valid) return
     setStatus('sending')
     try {
-      const result = deliver({ email: email.trim(), message: message.trim() })
+      const result = await deliver({ email: email.trim(), message: message.trim() })
       setStatus(result)
       if (result === 'sent') {
         setEmail('')
@@ -140,9 +165,9 @@ export default function ContactPage() {
             {status === 'error' && `The message could not be delivered. Email ${site.email} directly, or try again.`}
           </p>
           <p className="muted cnote">
-            Opens your email app, addressed to{' '}
+            {hasWebhook ? 'Goes straight to me' : 'Opens your email app, addressed to'}{' '}
             <a className="u strong" href={`mailto:${site.email}`}>
-              {site.email}
+              {hasWebhook ? 'at ' + site.email : site.email}
             </a>
           </p>
         </form>
