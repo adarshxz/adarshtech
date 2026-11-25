@@ -11,10 +11,13 @@ const ordinal = (n) => {
   return ({ 1: 'st', 2: 'nd', 3: 'rd' })[n % 10] || 'th'
 }
 
-export default function Footer() {
+export default function Footer({ variant }) {
   const [visitorCount, setVisitorCount] = useState(INITIAL_VISITOR_COUNT)
 
+  const isNotFound = variant === 'not-found'
+
   useEffect(() => {
+    if (isNotFound) return undefined
     const visitorId = (() => {
       try {
         const existing = localStorage.getItem(VISITOR_ID_KEY)
@@ -45,7 +48,7 @@ export default function Footer() {
     updateCount('POST')
     const interval = window.setInterval(() => updateCount(), 5_000)
     return () => window.clearInterval(interval)
-  }, [])
+  }, [isNotFound])
 
   /*
     A random ID is stored per browser only to avoid counting refreshes as new
@@ -53,7 +56,7 @@ export default function Footer() {
   */
 
   return (
-    <footer className="footer">
+    <footer className={`footer ${isNotFound ? 'footer-not-found' : ''}`}>
       <div className="footer-text">
         <p className="muted">
           Designed and developed by{' '}
@@ -61,13 +64,15 @@ export default function Footer() {
             {site.name}
           </a>
         </p>
-        <p className="muted">© {new Date().getFullYear()}. Built in {site.location.split(',')[0]}.</p>
+        <p className="muted">© {new Date().getFullYear()}. Built in {isNotFound ? 'the open' : site.location.split(',')[0]}.</p>
       </div>
       <div className="footer-count-area">
         <div className="footer-dots dots" aria-hidden="true" />
-        <p className="visitor-count" aria-label={`You are the ${visitorCount}${ordinal(visitorCount)} visitor`}>
-          You are the <strong>{visitorCount.toLocaleString('en-IN')}<sup>{ordinal(visitorCount)}</sup></strong> visitor
-        </p>
+        {!isNotFound && (
+          <p className="visitor-count" aria-label={`You are the ${visitorCount}${ordinal(visitorCount)} visitor`}>
+            You are the <strong>{visitorCount.toLocaleString('en-IN')}<sup>{ordinal(visitorCount)}</sup></strong> visitor
+          </p>
+        )}
       </div>
     </footer>
   )

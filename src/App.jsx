@@ -5,6 +5,7 @@ import CommandMenu from './components/CommandMenu'
 import Home from './pages/Home'
 import ProjectsPage from './pages/ProjectsPage'
 import ContactPage from './pages/ContactPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 export default function App() {
   return (
@@ -14,14 +15,52 @@ export default function App() {
       </a>
       <div className="site">
         <Header />
-        <main id="main" className="site-main">
-          <Routes>
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="*" element={<Home />} />
-          </Routes>
-        </main>
-        <Footer />
+        <Routes>
+          <Route
+            path="*"
+            element={
+              <>
+                <main id="main" className="site-main">
+                  <NotFoundPage />
+                </main>
+                <Footer variant="not-found" />
+              </>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <>
+                <main id="main" className="site-main">
+                  <Home />
+                </main>
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/projects"
+            element={
+              <>
+                <main id="main" className="site-main">
+                  <ProjectsPage />
+                </main>
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <>
+                <main id="main" className="site-main">
+                  <ContactPage />
+                </main>
+                <Footer />
+              </>
+            }
+          />
+        </Routes>
       </div>
       <CommandMenu />
     </>

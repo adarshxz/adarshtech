@@ -16,6 +16,12 @@
   border-top: 1px solid var(--border);
   overflow: hidden;
 }
+.footer-not-found .footer-count-area {
+  min-height: 202px;
+}
+.footer-not-found .footer-dots {
+  height: 202px;
+}
 .footer-dots {
   position: absolute;
   inset: 0;
